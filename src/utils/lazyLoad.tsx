@@ -1,5 +1,7 @@
 import React, { ComponentType, Suspense } from 'react'
 
+import Loading from '@/components/Loading'
+
 /**
  * 路由懒加载 hoc
  * @param importFunc
@@ -10,7 +12,7 @@ const LazyLoad = <T extends ComponentType<any>>(importFunc: () => Promise<{ defa
   const LazyComponent = React.lazy(importFunc)
 
   return (props: React.ComponentProps<T>) => (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading fullscreen={false} />}>
       <LazyComponent {...props} />
     </Suspense>
   )
